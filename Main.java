@@ -1,13 +1,14 @@
-package jejuTravelPackage;
-
-
+package exam;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Frame jf = new Frame("Java Event Test1 : KMK");
+	public static void main(String[] args) {
+		
+		new LoginScreen();
 
-
-    }
+		
+		
+		
+	}
 
 }
