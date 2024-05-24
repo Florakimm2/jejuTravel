@@ -1,17 +1,20 @@
 // 5/24 이주원 (조건선택화면 - 조건배치 2행3열로 바꿈) (결과화면 - 새로운창 생성, 피그마처럼 사진3개 나타나게, 하단에 select 버튼 생성, 버튼 누르면 다음 창 넘어가게 만듬)
-
+// 5/25 이현정 (상단바 구성 - 왼쪽 myJeju 글씨, 옆에 mypage, community 메뉴 구성 크기는 나중에 조정.., mypage, community 누르면 창 넘어감.)
 package exam;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class MainScreen extends JFrame {
 
     public MainScreen() {
         setTitle("제주도 관광코스 추천");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
+        createMenu(); //상단바 함수 실행
+        
         // 콤보 박스 생성
         String[] personOptions = {"1", "2", "3", "4", "5", "6+"};
         String[] dateOptions = {"오늘", "내일", "이번 주", "이번 주말"};
@@ -180,6 +183,41 @@ public class MainScreen extends JFrame {
 
         panel.add(imagePanel);
     }
+    
+    
+    private void createMenu() { // 상단바 함수
+    	JMenuBar menuBar = new JMenuBar();
+
+    	JLabel leftLabel = new JLabel("myJeju");
+    	leftLabel.setBorder(new EmptyBorder(0,10,0,0));
+    	menuBar.add(leftLabel);
+    	
+    	JMenuItem mypageItem = new JMenuItem("mypage");
+    	JMenuItem communityItem = new JMenuItem("community");
+    	mypageItem.addActionListener(new mypageActionListner());
+    	communityItem.addActionListener(new communityActionListner());
+  
+    	menuBar.add(Box.createHorizontalGlue());
+    	
+    	menuBar.add(mypageItem);
+    	menuBar.add(communityItem);
+    
+    	setJMenuBar(menuBar);
+    	}
+    
+    private class mypageActionListner implements ActionListener{
+    	public void actionPerformed(ActionEvent e) {
+    		new mypage();
+    		dispose();
+    	}
+    }
+    
+    private class communityActionListner implements ActionListener{
+    	public void actionPerformed(ActionEvent e) {
+    		new community();
+    		dispose();
+    	}
+    }
 }
 
 class NextPage extends JFrame {
@@ -204,4 +242,3 @@ class NextPage extends JFrame {
         setVisible(true);
     }
 }
-
