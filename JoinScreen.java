@@ -1,3 +1,5 @@
+# 5/24 이주원 (회원가입 창 크기도 동일하게 맞춤)
+
 package exam;
 
 import java.awt.BorderLayout;
@@ -95,7 +97,7 @@ public class JoinScreen extends JFrame {
         add(panel, BorderLayout.SOUTH);
         
         
-        setBounds(200, 200, 250, 300);
+        setSize(1280, 830);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
