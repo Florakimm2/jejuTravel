@@ -1,5 +1,7 @@
 // 5/24 이주원 (조건선택화면 - 조건배치 2행3열로 바꿈) (결과화면 - 새로운창 생성, 피그마처럼 사진3개 나타나게, 하단에 select 버튼 생성, 버튼 누르면 다음 창 넘어가게 만듬)
 // 5/25 이현정 (상단바 구성 - 왼쪽 myJeju 글씨, 옆에 mypage, community 메뉴 구성 크기는 나중에 조정.., mypage, community 누르면 창 넘어감.)
+// 5/25 이주원 (결과화면 - 사진4개한묶음 x 3개 나타나게 구현) (select 버튼 없애고 사진 누르면 창 열리게 설정) (추천코스 제목 추가, 각 묶음별 제목 추가)
+
 package exam;
 
 import java.awt.*;
@@ -12,9 +14,9 @@ public class MainScreen extends JFrame {
     public MainScreen() {
         setTitle("제주도 관광코스 추천");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        createMenu(); //상단바 함수 실행
-        
+
+        createMenu(); // 상단바 함수 실행
+
         // 콤보 박스 생성
         String[] personOptions = {"1", "2", "3", "4", "5", "6+"};
         String[] dateOptions = {"오늘", "내일", "이번 주", "이번 주말"};
@@ -92,19 +94,60 @@ public class MainScreen extends JFrame {
                 String selectedLocation = (String) locationComboBox.getSelectedItem();
 
                 // 위치에 따른 이미지 및 설명 배열 설정
-                String[][] images = {
-                    {"north_image1.jpg", "north_image2.jpg", "north_image3.jpg"},
-                    {"south_image1.jpg", "south_image2.jpg", "south_image3.jpg"},
-                    {"west_image1.jpg", "west_image2.jpg", "west_image3.jpg"},
-                    {"east_image1.jpg", "east_image2.jpg", "east_image3.jpg"},
-                    {"center_image1.jpg", "center_image2.jpg", "center_image3.jpg"}
+                String[][][] images = {
+                    {
+                        {"north_image1_1.jpg", "north_image1_2.jpg", "north_image1_3.jpg", "north_image1_4.jpg"},
+                        {"north_image2_1.jpg", "north_image2_2.jpg", "north_image2_3.jpg", "north_image2_4.jpg"},
+                        {"north_image3_1.jpg", "north_image3_2.jpg", "north_image3_3.jpg", "north_image3_4.jpg"}
+                    },
+                    {
+                        {"south_image1_1.jpg", "south_image1_2.jpg", "south_image1_3.jpg", "south_image1_4.jpg"},
+                        {"south_image2_1.jpg", "south_image2_2.jpg", "south_image2_3.jpg", "south_image2_4.jpg"},
+                        {"south_image3_1.jpg", "south_image3_2.jpg", "south_image3_3.jpg", "south_image3_4.jpg"}
+                    },
+                    {
+                        {"west_image1_1.jpg", "west_image1_2.jpg", "west_image1_3.jpg", "west_image1_4.jpg"},
+                        {"west_image2_1.jpg", "west_image2_2.jpg", "west_image2_3.jpg", "west_image2_4.jpg"},
+                        {"west_image3_1.jpg", "west_image3_2.jpg", "west_image3_3.jpg", "west_image3_4.jpg"}
+                    },
+                    {
+                        {"east_image1_1.jpg", "east_image1_2.jpg", "east_image1_3.jpg", "east_image1_4.jpg"},
+                        {"east_image2_1.jpg", "east_image2_2.jpg", "east_image2_3.jpg", "east_image2_4.jpg"},
+                        {"east_image3_1.jpg", "east_image3_2.jpg", "east_image3_3.jpg", "east_image3_4.jpg"}
+                    },
+                    {
+                        {"center_image1_1.jpg", "center_image1_2.jpg", "center_image1_3.jpg", "center_image1_4.jpg"},
+                        {"center_image2_1.jpg", "center_image2_2.jpg", "center_image2_3.jpg", "center_image2_4.jpg"},
+                        {"center_image3_1.jpg", "center_image3_2.jpg", "center_image3_3.jpg", "center_image3_4.jpg"}
+                    }
                 };
-                String[][] descriptions = {
-                    {"북부 지역 이미지 1", "북부 지역 이미지 2", "북부 지역 이미지 3"},
-                    {"남부 지역 이미지 1", "남부 지역 이미지 2", "남부 지역 이미지 3"},
-                    {"서부 지역 이미지 1", "서부 지역 이미지 2", "서부 지역 이미지 3"},
-                    {"동부 지역 이미지 1", "동부 지역 이미지 2", "동부 지역 이미지 3"},
-                    {"중부 지역 이미지 1", "중부 지역 이미지 2", "중부 지역 이미지 3"}
+
+                String[][][] descriptions = {
+                    {
+                        {"북부 지역 이미지 1-1", "북부 지역 이미지 1-2", "북부 지역 이미지 1-3", "북부 지역 이미지 1-4"},
+                        {"북부 지역 이미지 2-1", "북부 지역 이미지 2-2", "북부 지역 이미지 2-3", "북부 지역 이미지 2-4"},
+                        {"북부 지역 이미지 3-1", "북부 지역 이미지 3-2", "북부 지역 이미지 3-3", "북부 지역 이미지 3-4"}
+                    },
+                    {
+                        {"남부 지역 이미지 1-1", "남부 지역 이미지 1-2", "남부 지역 이미지 1-3", "남부 지역 이미지 1-4"},
+                        {"남부 지역 이미지 2-1", "남부 지역 이미지 2-2", "남부 지역 이미지 2-3", "남부 지역 이미지 2-4"},
+                        {"남부 지역 이미지 3-1", "남부 지역 이미지 3-2", "남부 지역 이미지 3-3", "남부 지역 이미지 3-4"}
+                    },
+                    {
+                        {"서부 지역 이미지 1-1", "서부 지역 이미지 1-2", "서부 지역 이미지 1-3", "서부 지역 이미지 1-4"},
+                        {"서부 지역 이미지 2-1", "서부 지역 이미지 2-2", "서부 지역 이미지 2-3", "서부 지역 이미지 2-4"},
+                        {"서부 지역 이미지 3-1", "서부 지역 이미지 3-2", "서부 지역 이미지 3-3", "서부 지역 이미지 3-4"}
+                    },
+                    {
+                        {"동부 지역 이미지 1-1", "동부 지역 이미지 1-2", "동부 지역 이미지 1-3", "동부 지역 이미지 1-4"},
+                        {"동부 지역 이미지 2-1", "동부 지역 이미지 2-2", "동부 지역 이미지 2-3", "동부 지역 이미지 2-4"},
+                        {"동부 지역 이미지 3-1", "동부 지역 이미지 3-2", "동부 지역 이미지 3-3", "동부 지역 이미지 3-4"}
+                    },
+                    {
+                        {"중부 지역 이미지 1-1", "중부 지역 이미지 1-2", "중부 지역 이미지 1-3", "중부 지역 이미지 1-4"},
+                        {"중부 지역 이미지 2-1", "중부 지역 이미지 2-2", "중부 지역 이미지 2-3", "중부 지역 이미지 2-4"},
+                        {"중부 지역 이미지 3-1", "중부 지역 이미지 3-2", "중부 지역 이미지 3-3", "중부 지역 이미지 3-4"}
+                    }
                 };
 
                 int index;
@@ -136,18 +179,47 @@ public class MainScreen extends JFrame {
                 // 결과 화면에 이미지와 설명을 표시할 패널 생성
                 JPanel resultPanel = new JPanel(new GridLayout(1, 3));
 
-                // 이미지와 선택 버튼을 포함하는 패널 생성 및 추가
+             // 이미지와 선택 버튼을 포함하는 패널 생성 및 추가
                 for (int i = 0; i < 3; i++) {
-                    addImageWithButton(resultPanel, images[index][i], descriptions[index][i], resultFrame);
+                    addImageGroup(resultPanel, images[index][i], descriptions[index][i], resultFrame, i); // 수정된 부분
                 }
 
                 resultFrame.add(resultPanel);
                 resultFrame.setSize(1280, 830);
                 resultFrame.setLocationRelativeTo(null);
                 resultFrame.setVisible(true);
+                
+             // 결과 패널에 제목 라벨 추가
+                JLabel titleLabel = new JLabel("추천 관광 코스");
+                titleLabel.setHorizontalAlignment(JLabel.CENTER);
+                titleLabel.setFont(new Font("맑은고딕", Font.BOLD, 24));
+                resultFrame.add(titleLabel, BorderLayout.NORTH);
             }
         });
     }
+
+    private void addImageGroup(JPanel panel, String[] imagePaths, String[] descriptions, JFrame resultFrame, int groupIndex) {
+        // 각 그룹을 포함하는 패널 생성
+        JPanel groupPanel = new JPanel(new BorderLayout());
+
+        // 그룹 제목 라벨 생성
+        JLabel titleLabel = new JLabel("추천 " + (groupIndex + 1));
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        titleLabel.setFont(new Font("맑은고딕", Font.BOLD, 20));
+        groupPanel.add(titleLabel, BorderLayout.NORTH); // 수정된 부분
+
+        JPanel innerPanel = new JPanel(new GridLayout(2, 2));
+        groupPanel.add(innerPanel, BorderLayout.CENTER);
+
+        for (int i = 0; i < imagePaths.length; i++) {
+            addImageWithButton(innerPanel, imagePaths[i], descriptions[i], resultFrame);
+        }
+        groupPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // 테두리 추가
+
+        panel.add(groupPanel);
+    }
+
+
 
     private void addImageWithButton(JPanel panel, String imagePath, String description, JFrame resultFrame) {
         // 이미지와 설명을 포함하는 패널 생성
@@ -164,11 +236,10 @@ public class MainScreen extends JFrame {
         descriptionLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         descriptionLabel.setFont(new Font("맑은고딕", Font.BOLD, 18));
 
-        // 선택 버튼 생성
-        JButton selectButton = new JButton("Select");
-        selectButton.addActionListener(new ActionListener() {
+     // 이미지 라벨에 마우스 리스너 추가
+        imageLabel.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 // 선택한 이미지 경로를 저장하고 다음 페이지로 이동
                 String selectedImagePath = imagePath;
                 new NextPage(selectedImagePath);
@@ -176,47 +247,45 @@ public class MainScreen extends JFrame {
             }
         });
 
-        // 이미지, 설명, 선택 버튼을 패널에 추가
+     // 이미지와 설명을 패널에 추가
         imagePanel.add(imageLabel, BorderLayout.CENTER);
         imagePanel.add(descriptionLabel, BorderLayout.SOUTH);
-        imagePanel.add(selectButton, BorderLayout.NORTH);
 
         panel.add(imagePanel);
     }
-    
-    
-    private void createMenu() { // 상단바 함수
-    	JMenuBar menuBar = new JMenuBar();
 
-    	JLabel leftLabel = new JLabel("myJeju");
-    	leftLabel.setBorder(new EmptyBorder(0,10,0,0));
-    	menuBar.add(leftLabel);
-    	
-    	JMenuItem mypageItem = new JMenuItem("mypage");
-    	JMenuItem communityItem = new JMenuItem("community");
-    	mypageItem.addActionListener(new mypageActionListner());
-    	communityItem.addActionListener(new communityActionListner());
-  
-    	menuBar.add(Box.createHorizontalGlue());
-    	
-    	menuBar.add(mypageItem);
-    	menuBar.add(communityItem);
-    
-    	setJMenuBar(menuBar);
-    	}
-    
-    private class mypageActionListner implements ActionListener{
-    	public void actionPerformed(ActionEvent e) {
-    		new mypage();
-    		dispose();
-    	}
+    private void createMenu() { // 상단바 함수
+        JMenuBar menuBar = new JMenuBar();
+
+        JLabel leftLabel = new JLabel("myJeju");
+        leftLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
+        menuBar.add(leftLabel);
+
+        JMenuItem mypageItem = new JMenuItem("mypage");
+        JMenuItem communityItem = new JMenuItem("community");
+        mypageItem.addActionListener(new mypageActionListner());
+        communityItem.addActionListener(new communityActionListner());
+
+        menuBar.add(Box.createHorizontalGlue());
+
+        menuBar.add(mypageItem);
+        menuBar.add(communityItem);
+
+        setJMenuBar(menuBar);
     }
-    
-    private class communityActionListner implements ActionListener{
-    	public void actionPerformed(ActionEvent e) {
-    		new community();
-    		dispose();
-    	}
+
+    private class mypageActionListner implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            new mypage();
+            dispose();
+        }
+    }
+
+    private class communityActionListner implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            new community();
+            dispose();
+        }
     }
 }
 
