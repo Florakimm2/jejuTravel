@@ -1,6 +1,7 @@
 // 5/24 이주원 (조건선택화면 - 조건배치 2행3열로 바꿈) (결과화면 - 새로운창 생성, 피그마처럼 사진3개 나타나게, 하단에 select 버튼 생성, 버튼 누르면 다음 창 넘어가게 만듬)
 // 5/25 이현정 (상단바 구성 - 왼쪽 myJeju 글씨, 옆에 mypage, community 메뉴 구성 크기는 나중에 조정.., mypage, community 누르면 창 넘어감.)
 // 5/25 이주원 (결과화면 - 사진4개한묶음 x 3개 나타나게 구현) (select 버튼 없애고 사진 누르면 창 열리게 설정) (추천코스 제목 추가, 각 묶음별 제목 추가)
+// 5/25 18:40 김민경 (달력 넣음) (초반 import net.~ 3줄과 이름 뒤에 'CAL'이 붙어있는 변수들이 있는 줄은 모두 수정된 줄!)
 
 package exam;
 
@@ -8,6 +9,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
 
 public class MainScreen extends JFrame {
 
@@ -17,16 +23,20 @@ public class MainScreen extends JFrame {
 
         createMenu(); // 상단바 함수 실행
 
+        UtilDateModel modelCAL = new UtilDateModel();
+        JDatePanelImpl datePanelCAL = new JDatePanelImpl(modelCAL);
+        JDatePickerImpl datePickerCAL = new JDatePickerImpl(datePanelCAL);
+
         // 콤보 박스 생성
         String[] personOptions = {"1", "2", "3", "4", "5", "6+"};
-        String[] dateOptions = {"오늘", "내일", "이번 주", "이번 주말"};
+        //String[] dateOptions = {"오늘", "내일"};
         String[] vehicleOptions = {"O", "X"};
         String[] conceptOptions = {"힐링", "올레길", "인스타", "맛집", "드라이브"};
         String[] locationOptions = {"북부", "남부", "서부", "동부", "중부"};
         String[] udoOptions = {"우도 여행 포함", "우도 여행 미포함"};
 
         JComboBox<String> personComboBox = new JComboBox<>(personOptions);
-        JComboBox<String> dateComboBox = new JComboBox<>(dateOptions);
+        //JComboBox<String> dateComboBox = new JComboBox<>(dateOptions);
         JComboBox<String> vehicleComboBox = new JComboBox<>(vehicleOptions);
         JComboBox<String> conceptComboBox = new JComboBox<>(conceptOptions);
         JComboBox<String> locationComboBox = new JComboBox<>(locationOptions);
@@ -47,7 +57,7 @@ public class MainScreen extends JFrame {
 
         JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         datePanel.add(dateLabel);
-        datePanel.add(dateComboBox);
+        datePanel.add(datePickerCAL); // 달력 삽입
 
         JPanel vehiclePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         vehiclePanel.add(vehicleLabel);
@@ -95,59 +105,59 @@ public class MainScreen extends JFrame {
 
                 // 위치에 따른 이미지 및 설명 배열 설정
                 String[][][] images = {
-                    {
-                        {"north_image1_1.jpg", "north_image1_2.jpg", "north_image1_3.jpg", "north_image1_4.jpg"},
-                        {"north_image2_1.jpg", "north_image2_2.jpg", "north_image2_3.jpg", "north_image2_4.jpg"},
-                        {"north_image3_1.jpg", "north_image3_2.jpg", "north_image3_3.jpg", "north_image3_4.jpg"}
-                    },
-                    {
-                        {"south_image1_1.jpg", "south_image1_2.jpg", "south_image1_3.jpg", "south_image1_4.jpg"},
-                        {"south_image2_1.jpg", "south_image2_2.jpg", "south_image2_3.jpg", "south_image2_4.jpg"},
-                        {"south_image3_1.jpg", "south_image3_2.jpg", "south_image3_3.jpg", "south_image3_4.jpg"}
-                    },
-                    {
-                        {"west_image1_1.jpg", "west_image1_2.jpg", "west_image1_3.jpg", "west_image1_4.jpg"},
-                        {"west_image2_1.jpg", "west_image2_2.jpg", "west_image2_3.jpg", "west_image2_4.jpg"},
-                        {"west_image3_1.jpg", "west_image3_2.jpg", "west_image3_3.jpg", "west_image3_4.jpg"}
-                    },
-                    {
-                        {"east_image1_1.jpg", "east_image1_2.jpg", "east_image1_3.jpg", "east_image1_4.jpg"},
-                        {"east_image2_1.jpg", "east_image2_2.jpg", "east_image2_3.jpg", "east_image2_4.jpg"},
-                        {"east_image3_1.jpg", "east_image3_2.jpg", "east_image3_3.jpg", "east_image3_4.jpg"}
-                    },
-                    {
-                        {"center_image1_1.jpg", "center_image1_2.jpg", "center_image1_3.jpg", "center_image1_4.jpg"},
-                        {"center_image2_1.jpg", "center_image2_2.jpg", "center_image2_3.jpg", "center_image2_4.jpg"},
-                        {"center_image3_1.jpg", "center_image3_2.jpg", "center_image3_3.jpg", "center_image3_4.jpg"}
-                    }
+                        {
+                                {"north_image1_1.jpg", "north_image1_2.jpg", "north_image1_3.jpg", "north_image1_4.jpg"},
+                                {"north_image2_1.jpg", "north_image2_2.jpg", "north_image2_3.jpg", "north_image2_4.jpg"},
+                                {"north_image3_1.jpg", "north_image3_2.jpg", "north_image3_3.jpg", "north_image3_4.jpg"}
+                        },
+                        {
+                                {"south_image1_1.jpg", "south_image1_2.jpg", "south_image1_3.jpg", "south_image1_4.jpg"},
+                                {"south_image2_1.jpg", "south_image2_2.jpg", "south_image2_3.jpg", "south_image2_4.jpg"},
+                                {"south_image3_1.jpg", "south_image3_2.jpg", "south_image3_3.jpg", "south_image3_4.jpg"}
+                        },
+                        {
+                                {"west_image1_1.jpg", "west_image1_2.jpg", "west_image1_3.jpg", "west_image1_4.jpg"},
+                                {"west_image2_1.jpg", "west_image2_2.jpg", "west_image2_3.jpg", "west_image2_4.jpg"},
+                                {"west_image3_1.jpg", "west_image3_2.jpg", "west_image3_3.jpg", "west_image3_4.jpg"}
+                        },
+                        {
+                                {"east_image1_1.jpg", "east_image1_2.jpg", "east_image1_3.jpg", "east_image1_4.jpg"},
+                                {"east_image2_1.jpg", "east_image2_2.jpg", "east_image2_3.jpg", "east_image2_4.jpg"},
+                                {"east_image3_1.jpg", "east_image3_2.jpg", "east_image3_3.jpg", "east_image3_4.jpg"}
+                        },
+                        {
+                                {"center_image1_1.jpg", "center_image1_2.jpg", "center_image1_3.jpg", "center_image1_4.jpg"},
+                                {"center_image2_1.jpg", "center_image2_2.jpg", "center_image2_3.jpg", "center_image2_4.jpg"},
+                                {"center_image3_1.jpg", "center_image3_2.jpg", "center_image3_3.jpg", "center_image3_4.jpg"}
+                        }
                 };
 
                 String[][][] descriptions = {
-                    {
-                        {"북부 지역 이미지 1-1", "북부 지역 이미지 1-2", "북부 지역 이미지 1-3", "북부 지역 이미지 1-4"},
-                        {"북부 지역 이미지 2-1", "북부 지역 이미지 2-2", "북부 지역 이미지 2-3", "북부 지역 이미지 2-4"},
-                        {"북부 지역 이미지 3-1", "북부 지역 이미지 3-2", "북부 지역 이미지 3-3", "북부 지역 이미지 3-4"}
-                    },
-                    {
-                        {"남부 지역 이미지 1-1", "남부 지역 이미지 1-2", "남부 지역 이미지 1-3", "남부 지역 이미지 1-4"},
-                        {"남부 지역 이미지 2-1", "남부 지역 이미지 2-2", "남부 지역 이미지 2-3", "남부 지역 이미지 2-4"},
-                        {"남부 지역 이미지 3-1", "남부 지역 이미지 3-2", "남부 지역 이미지 3-3", "남부 지역 이미지 3-4"}
-                    },
-                    {
-                        {"서부 지역 이미지 1-1", "서부 지역 이미지 1-2", "서부 지역 이미지 1-3", "서부 지역 이미지 1-4"},
-                        {"서부 지역 이미지 2-1", "서부 지역 이미지 2-2", "서부 지역 이미지 2-3", "서부 지역 이미지 2-4"},
-                        {"서부 지역 이미지 3-1", "서부 지역 이미지 3-2", "서부 지역 이미지 3-3", "서부 지역 이미지 3-4"}
-                    },
-                    {
-                        {"동부 지역 이미지 1-1", "동부 지역 이미지 1-2", "동부 지역 이미지 1-3", "동부 지역 이미지 1-4"},
-                        {"동부 지역 이미지 2-1", "동부 지역 이미지 2-2", "동부 지역 이미지 2-3", "동부 지역 이미지 2-4"},
-                        {"동부 지역 이미지 3-1", "동부 지역 이미지 3-2", "동부 지역 이미지 3-3", "동부 지역 이미지 3-4"}
-                    },
-                    {
-                        {"중부 지역 이미지 1-1", "중부 지역 이미지 1-2", "중부 지역 이미지 1-3", "중부 지역 이미지 1-4"},
-                        {"중부 지역 이미지 2-1", "중부 지역 이미지 2-2", "중부 지역 이미지 2-3", "중부 지역 이미지 2-4"},
-                        {"중부 지역 이미지 3-1", "중부 지역 이미지 3-2", "중부 지역 이미지 3-3", "중부 지역 이미지 3-4"}
-                    }
+                        {
+                                {"북부 지역 이미지 1-1", "북부 지역 이미지 1-2", "북부 지역 이미지 1-3", "북부 지역 이미지 1-4"},
+                                {"북부 지역 이미지 2-1", "북부 지역 이미지 2-2", "북부 지역 이미지 2-3", "북부 지역 이미지 2-4"},
+                                {"북부 지역 이미지 3-1", "북부 지역 이미지 3-2", "북부 지역 이미지 3-3", "북부 지역 이미지 3-4"}
+                        },
+                        {
+                                {"남부 지역 이미지 1-1", "남부 지역 이미지 1-2", "남부 지역 이미지 1-3", "남부 지역 이미지 1-4"},
+                                {"남부 지역 이미지 2-1", "남부 지역 이미지 2-2", "남부 지역 이미지 2-3", "남부 지역 이미지 2-4"},
+                                {"남부 지역 이미지 3-1", "남부 지역 이미지 3-2", "남부 지역 이미지 3-3", "남부 지역 이미지 3-4"}
+                        },
+                        {
+                                {"서부 지역 이미지 1-1", "서부 지역 이미지 1-2", "서부 지역 이미지 1-3", "서부 지역 이미지 1-4"},
+                                {"서부 지역 이미지 2-1", "서부 지역 이미지 2-2", "서부 지역 이미지 2-3", "서부 지역 이미지 2-4"},
+                                {"서부 지역 이미지 3-1", "서부 지역 이미지 3-2", "서부 지역 이미지 3-3", "서부 지역 이미지 3-4"}
+                        },
+                        {
+                                {"동부 지역 이미지 1-1", "동부 지역 이미지 1-2", "동부 지역 이미지 1-3", "동부 지역 이미지 1-4"},
+                                {"동부 지역 이미지 2-1", "동부 지역 이미지 2-2", "동부 지역 이미지 2-3", "동부 지역 이미지 2-4"},
+                                {"동부 지역 이미지 3-1", "동부 지역 이미지 3-2", "동부 지역 이미지 3-3", "동부 지역 이미지 3-4"}
+                        },
+                        {
+                                {"중부 지역 이미지 1-1", "중부 지역 이미지 1-2", "중부 지역 이미지 1-3", "중부 지역 이미지 1-4"},
+                                {"중부 지역 이미지 2-1", "중부 지역 이미지 2-2", "중부 지역 이미지 2-3", "중부 지역 이미지 2-4"},
+                                {"중부 지역 이미지 3-1", "중부 지역 이미지 3-2", "중부 지역 이미지 3-3", "중부 지역 이미지 3-4"}
+                        }
                 };
 
                 int index;
@@ -179,7 +189,7 @@ public class MainScreen extends JFrame {
                 // 결과 화면에 이미지와 설명을 표시할 패널 생성
                 JPanel resultPanel = new JPanel(new GridLayout(1, 3));
 
-             // 이미지와 선택 버튼을 포함하는 패널 생성 및 추가
+                // 이미지와 선택 버튼을 포함하는 패널 생성 및 추가
                 for (int i = 0; i < 3; i++) {
                     addImageGroup(resultPanel, images[index][i], descriptions[index][i], resultFrame, i); // 수정된 부분
                 }
@@ -188,8 +198,8 @@ public class MainScreen extends JFrame {
                 resultFrame.setSize(1280, 830);
                 resultFrame.setLocationRelativeTo(null);
                 resultFrame.setVisible(true);
-                
-             // 결과 패널에 제목 라벨 추가
+
+                // 결과 패널에 제목 라벨 추가
                 JLabel titleLabel = new JLabel("추천 관광 코스");
                 titleLabel.setHorizontalAlignment(JLabel.CENTER);
                 titleLabel.setFont(new Font("맑은고딕", Font.BOLD, 24));
@@ -224,7 +234,7 @@ public class MainScreen extends JFrame {
     private void addImageWithButton(JPanel panel, String imagePath, String description, JFrame resultFrame) {
         // 이미지와 설명을 포함하는 패널 생성
         JPanel imagePanel = new JPanel(new BorderLayout());
-        
+
         // 이미지를 표시할 라벨 생성
         JLabel imageLabel = new JLabel();
         ImageIcon imageIcon = new ImageIcon(imagePath);
@@ -236,7 +246,7 @@ public class MainScreen extends JFrame {
         descriptionLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         descriptionLabel.setFont(new Font("맑은고딕", Font.BOLD, 18));
 
-     // 이미지 라벨에 마우스 리스너 추가
+        // 이미지 라벨에 마우스 리스너 추가
         imageLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -247,7 +257,7 @@ public class MainScreen extends JFrame {
             }
         });
 
-     // 이미지와 설명을 패널에 추가
+        // 이미지와 설명을 패널에 추가
         imagePanel.add(imageLabel, BorderLayout.CENTER);
         imagePanel.add(descriptionLabel, BorderLayout.SOUTH);
 
