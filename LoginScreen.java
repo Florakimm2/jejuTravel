@@ -1,5 +1,5 @@
 // 5/24 이주원 (로그인 버튼 눌러도 다음 창으로 넘어가게 수정)
-// 5/25 12:31 권희재 (디자인 수정 - 배경 색, 글자 색, 폰토, ID/PW 영어로)
+// 5/25 13:04 권희재 (디자인 수정 - 배경 색, 글자 색, 폰토, ID/PW 영어로)
 
 package exam;
 
@@ -65,15 +65,16 @@ public class LoginScreen extends JFrame {
         setVisible(true);
         setSize(1280, 832);
         
-        title.setBackground(new Color(230, 121, 0)); // title 패널의 배경색 설정
-		jp1.setBackground(new Color(230, 121, 0)); // jp1 패널의 배경색 설정
-		idPanel.setBackground(new Color(230, 121, 0)); // idPanel 패널의 배경색 설정
-		idPanel2.setBackground(new Color(230, 121, 0)); // idPanel2 패널의 배경색 설정
-		pwdPanel.setBackground(new Color(230, 121, 0)); // pwdPanel 패널의 배경색 설정
-		pwdPanel2.setBackground(new Color(230, 121, 0)); // pwdPanel2 패널의 배경색 설정
-		loginPanel.setBackground(new Color(230, 121, 0)); // loginPanel 패널의 배경색 설정
-		joinPanel.setBackground(new Color(230, 121, 0)); // joinPanel 패널의 배경색 설정
-		jp2.setBackground(new Color(230, 121, 0)); // jp2 패널의 배경색 설정
+        title.setBackground(new Color(247, 125, 12)); // title 패널의 배경색 설정
+        jp1.setBackground(new Color(247, 125, 12)); // jp1 패널의 배경색 설정
+        idPanel.setBackground(new Color(247, 125, 12)); // idPanel 패널의 배경색 설정
+        idPanel2.setBackground(new Color(247, 125, 12)); // idPanel2 패널의 배경색 설정
+        pwdPanel.setBackground(new Color(247, 125, 12)); // pwdPanel 패널의 배경색 설정
+        pwdPanel2.setBackground(new Color(247, 125, 12)); // pwdPanel2 패널의 배경색 설정
+        loginPanel.setBackground(new Color(247, 125, 12)); // loginPanel 패널의 배경색 설정
+        joinPanel.setBackground(new Color(247, 125, 12)); // joinPanel 패널의 배경색 설정
+        jp2.setBackground(new Color(247, 125, 12)); // jp2 패널의 배경색 설정
+
         
         // 로그인 버튼에 대한 ActionListener 설정
         jLogin.addActionListener(new ActionListener() {
