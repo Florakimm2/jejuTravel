@@ -1,5 +1,5 @@
 // 5/24 이주원 (회원가입 창 크기도 동일하게 맞춤)
-// 5/25 12:38 권희재 (디자인 수정 - 배경색, 글자색, 폰트 변경)
+// 5/25 13:02 권희재 (디자인 수정 - 배경색, 글자색, 폰트 변경)
 
 package exam;
 
@@ -104,15 +104,16 @@ public class JoinScreen extends JFrame {
         
         setVisible(true);
         
-        radioPanel.setBackground(new Color(230, 121, 0));
-        idPanel.setBackground(new Color(230, 121, 0));
-        pwdPanel.setBackground(new Color(230, 121, 0));
-        namePanel.setBackground(new Color(230, 121, 0));
-        phonePanel.setBackground(new Color(230, 121, 0));
-        formPanel.setBackground(new Color(230, 121, 0));
-        contentPanel.setBackground(new Color(230, 121, 0));
-        panel.setBackground(new Color(230, 121, 0));
-        getContentPane().setBackground(new Color(230, 121, 0));
+        //배경색 설정
+        radioPanel.setBackground(new Color(247, 125, 12));
+        idPanel.setBackground(new Color(247, 125, 12));
+        pwdPanel.setBackground(new Color(247, 125, 12));
+        namePanel.setBackground(new Color(247, 125, 12));
+        phonePanel.setBackground(new Color(247, 125, 12));
+        formPanel.setBackground(new Color(247, 125, 12));
+        contentPanel.setBackground(new Color(247, 125, 12));
+        panel.setBackground(new Color(247, 125, 12));
+        getContentPane().setBackground(new Color(247, 125, 12));
 
         
         
