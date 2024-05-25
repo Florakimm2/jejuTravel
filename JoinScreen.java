@@ -1,4 +1,5 @@
 // 5/24 이주원 (회원가입 창 크기도 동일하게 맞춤)
+// 5/25 12:38 권희재 (디자인 수정 - 배경색, 글자색, 폰트 변경)
 
 package exam;
 
@@ -24,8 +25,8 @@ public class JoinScreen extends JFrame {
         JLabel title = 
             new JLabel("회원가입", JLabel.CENTER);
         
-        title.setForeground(new Color(5, 0, 153));
-        title.setFont(new Font("맑은고딕", Font.BOLD, 30));
+        title.setForeground(new Color(255, 255, 255));
+        title.setFont(new Font("나눔 스퀘어", Font.BOLD, 30));
         
         JButton join = new JButton("회원가입");
         JButton cancel = new JButton("취소");
@@ -102,6 +103,17 @@ public class JoinScreen extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         setVisible(true);
+        
+        radioPanel.setBackground(new Color(230, 121, 0));
+        idPanel.setBackground(new Color(230, 121, 0));
+        pwdPanel.setBackground(new Color(230, 121, 0));
+        namePanel.setBackground(new Color(230, 121, 0));
+        phonePanel.setBackground(new Color(230, 121, 0));
+        formPanel.setBackground(new Color(230, 121, 0));
+        contentPanel.setBackground(new Color(230, 121, 0));
+        panel.setBackground(new Color(230, 121, 0));
+        getContentPane().setBackground(new Color(230, 121, 0));
+
         
         
         // 이벤트 처리
