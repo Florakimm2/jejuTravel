@@ -1,14 +1,15 @@
 // 5/25 이주원 (상단바 메인페이지처럼 추가)
 // 5/26 이현정 (상단바 수정)
 // 5/27 이주원 (여행 일정표 삽입)
+// 5/27 이주원 (오렌지색 상단바를 지워버렸음을 알게되어 다시 추가함) 
+
 
 package exam;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class mypage extends JFrame {
     private DefaultTableModel model;
@@ -28,7 +29,41 @@ public class mypage extends JFrame {
     }
 
     private void createMenu() {
-        // 메뉴 생성 코드
+        JMenuBar menuBar = new JMenuBar();
+
+        JLabel leftLabel = new JLabel("myJeju");
+        leftLabel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        leftLabel.setForeground(new Color(255, 255, 255));
+        menuBar.add(leftLabel);
+
+        JMenuItem myPageItem = new JMenuItem("My Page");
+        JMenuItem communityItem = new JMenuItem("Community");
+        myPageItem.setBackground(new Color(247, 125, 12));
+        myPageItem.setForeground(new Color(255, 255, 255));
+        communityItem.setBackground(new Color(247, 125, 12));
+        communityItem.setForeground(new Color(255, 255, 255));
+
+        leftLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new MainScreen();
+                dispose();
+            }
+        });
+        myPageItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new mypage();
+                dispose();
+            }
+        });
+        communityItem.setEnabled(false); // 현재 페이지이므로 비활성화
+
+        menuBar.add(Box.createHorizontalGlue());
+        menuBar.add(myPageItem);
+        menuBar.add(communityItem);
+        menuBar.setBackground(new Color(247, 125, 12));
+
+        setJMenuBar(menuBar);
     }
 
     private void createScheduleTable() {
