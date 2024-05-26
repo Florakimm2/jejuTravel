@@ -2,6 +2,7 @@
 // 5/25 이현정 (상단바 구성 - 왼쪽 myJeju 글씨, 옆에 mypage, community 메뉴 구성 크기는 나중에 조정.., mypage, community 누르면 창 넘어감.)
 // 5/25 이주원 (결과화면 - 사진4개한묶음 x 3개 나타나게 구현) (select 버튼 없애고 사진 누르면 창 열리게 설정) (추천코스 제목 추가, 각 묶음별 제목 추가)
 // 5/25 18:40 김민경 (달력 넣음) (달력 삽입을 실행시키려면 'jdatepicker'파일을 다운받아 project lib에 추가해야 함!) (초반 import net.~ 3줄과 이름 뒤에 'CAL'이 붙어있는 변수들이 있는 줄은 모두 수정된 줄!)
+// 5/26 이주원 (남부 사진 저장,이름,설명 일부만 일단 추가) (결과화면 사진 제목 글씨 크기 줄임, 사진 안잘리고 나오게 코딩) (사진 누르면 나오는 창 - 좌측에 사진 나오게, 우측에 설명 나오게 코딩)
 
 package exam;
 
@@ -29,14 +30,12 @@ public class MainScreen extends JFrame {
 
         // 콤보 박스 생성
         String[] personOptions = {"1", "2", "3", "4", "5", "6+"};
-        //String[] dateOptions = {"오늘", "내일"};
         String[] vehicleOptions = {"O", "X"};
         String[] conceptOptions = {"힐링", "올레길", "인스타", "맛집", "드라이브"};
         String[] locationOptions = {"북부", "남부", "서부", "동부", "중부"};
         String[] udoOptions = {"우도 여행 포함", "우도 여행 미포함"};
 
         JComboBox<String> personComboBox = new JComboBox<>(personOptions);
-        //JComboBox<String> dateComboBox = new JComboBox<>(dateOptions);
         JComboBox<String> vehicleComboBox = new JComboBox<>(vehicleOptions);
         JComboBox<String> conceptComboBox = new JComboBox<>(conceptOptions);
         JComboBox<String> locationComboBox = new JComboBox<>(locationOptions);
@@ -106,14 +105,14 @@ public class MainScreen extends JFrame {
                 // 위치에 따른 이미지 및 설명 배열 설정
                 String[][][] images = {
                         {
-                                {"north_image1_1.jpg", "north_image1_2.jpg", "north_image1_3.jpg", "north_image1_4.jpg"},
+                                {"north_image1_!.jpg", "north_image1_2.jpg", "north_image1_3.jpg", "north_image1_4.jpg"},
                                 {"north_image2_1.jpg", "north_image2_2.jpg", "north_image2_3.jpg", "north_image2_4.jpg"},
                                 {"north_image3_1.jpg", "north_image3_2.jpg", "north_image3_3.jpg", "north_image3_4.jpg"}
                         },
                         {
-                                {"south_image1_1.jpg", "south_image1_2.jpg", "south_image1_3.jpg", "south_image1_4.jpg"},
-                                {"south_image2_1.jpg", "south_image2_2.jpg", "south_image2_3.jpg", "south_image2_4.jpg"},
-                                {"south_image3_1.jpg", "south_image3_2.jpg", "south_image3_3.jpg", "south_image3_4.jpg"}
+                                {"s_res1.jpg", "s_cafe1.jpg", "s_land1.jpg", "s_land2.jpg"},
+                                {"s_res2.jpg", "s_cafe2.jpg", "s_land3.jpg", "s_land4.jpg"},
+                                {"s_res3.jpg", "s_cafe3.jpg", "s_land3.jpg", "s_land1.jpg"}
                         },
                         {
                                 {"west_image1_1.jpg", "west_image1_2.jpg", "west_image1_3.jpg", "west_image1_4.jpg"},
@@ -139,9 +138,9 @@ public class MainScreen extends JFrame {
                                 {"북부 지역 이미지 3-1", "북부 지역 이미지 3-2", "북부 지역 이미지 3-3", "북부 지역 이미지 3-4"}
                         },
                         {
-                                {"남부 지역 이미지 1-1", "남부 지역 이미지 1-2", "남부 지역 이미지 1-3", "남부 지역 이미지 1-4"},
-                                {"남부 지역 이미지 2-1", "남부 지역 이미지 2-2", "남부 지역 이미지 2-3", "남부 지역 이미지 2-4"},
-                                {"남부 지역 이미지 3-1", "남부 지역 이미지 3-2", "남부 지역 이미지 3-3", "남부 지역 이미지 3-4"}
+                                {"큰갯물횟집 중문본점", "제주카페스르륵", "주상절리대(중문대포해안)", "엉덩물계곡"},
+                                {"화고 흑돼지 신시가지점", "카페 허니문하우스", "중문색달해수욕장", "약천사"},
+                                {"강정해녀의 집", "카페 바다다", "중문색달해수욕장", "주상절리대(중문대포해안)"}
                         },
                         {
                                 {"서부 지역 이미지 1-1", "서부 지역 이미지 1-2", "서부 지역 이미지 1-3", "서부 지역 이미지 1-4"},
@@ -157,6 +156,34 @@ public class MainScreen extends JFrame {
                                 {"중부 지역 이미지 1-1", "중부 지역 이미지 1-2", "중부 지역 이미지 1-3", "중부 지역 이미지 1-4"},
                                 {"중부 지역 이미지 2-1", "중부 지역 이미지 2-2", "중부 지역 이미지 2-3", "중부 지역 이미지 2-4"},
                                 {"중부 지역 이미지 3-1", "중부 지역 이미지 3-2", "중부 지역 이미지 3-3", "중부 지역 이미지 3-4"}
+                        }
+                };
+
+                String[][][] comments = {
+                        {
+                                {"북부 이미지 1-1의 코멘트", "북부 이미지 1-2의 코멘트", "북부 이미지 1-3의 코멘트", "북부 이미지 1-4의 코멘트"},
+                                {"북부 이미지 2-1의 코멘트", "북부 이미지 2-2의 코멘트", "북부 이미지 2-3의 코멘트", "북부 이미지 2-4의 코멘트"},
+                                {"북부 이미지 3-1의 코멘트", "북부 이미지 3-2의 코멘트", "북부 이미지 3-3의 코멘트", "북부 이미지 3-4의 코멘트"}
+                        },
+                        {
+                                {"-대포항 앞 바다뷰 횟집\n-고깃배를 보유 사장님이 직접잡은 자연산회", "제주카페스르륵 코멘트", "주상절리대(중문대포해안) 코멘트", "엉덩물계곡 코멘트"},
+                                {"화고 흑돼지 신시가지점 코멘트", "카페 허니문하우스 코멘트", "중문색달해수욕장 코멘트", "약천사 코멘트"},
+                                {"강정해녀의 집 코멘트", "카페 바다다 코멘트", "중문색달해수욕장 코멘트", "주상절리대(중문대포해안) 코멘트"}
+                        },
+                        {
+                                {"서부 이미지 1-1의 코멘트", "서부 이미지 1-2의 코멘트", "서부 이미지 1-3의 코멘트", "서부 이미지 1-4의 코멘트"},
+                                {"서부 이미지 2-1의 코멘트", "서부 이미지 2-2의 코멘트", "서부 이미지 2-3의 코멘트", "서부 이미지 2-4의 코멘트"},
+                                {"서부 이미지 3-1의 코멘트", "서부 이미지 3-2의 코멘트", "서부 이미지 3-3의 코멘트", "서부 이미지 3-4의 코멘트"}
+                        },
+                        {
+                                {"동부 이미지 1-1의 코멘트", "동부 이미지 1-2의 코멘트", "동부 이미지 1-3의 코멘트", "동부 이미지 1-4의 코멘트"},
+                                {"동부 이미지 2-1의 코멘트", "동부 이미지 2-2의 코멘트", "동부 이미지 2-3의 코멘트", "동부 이미지 2-4의 코멘트"},
+                                {"동부 이미지 3-1의 코멘트", "동부 이미지 3-2의 코멘트", "동부 이미지 3-3의 코멘트", "동부 이미지 3-4의 코멘트"}
+                        },
+                        {
+                                {"중부 이미지 1-1의 코멘트", "중부 이미지 1-2의 코멘트", "중부 이미지 1-3의 코멘트", "중부 이미지 1-4의 코멘트"},
+                                {"중부 이미지 2-1의 코멘트", "중부 이미지 2-2의 코멘트", "중부 이미지 2-3의 코멘트", "중부 이미지 2-4의 코멘트"},
+                                {"중부 이미지 3-1의 코멘트", "중부 이미지 3-2의 코멘트", "중부 이미지 3-3의 코멘트", "중부 이미지 3-4의 코멘트"}
                         }
                 };
 
@@ -191,7 +218,7 @@ public class MainScreen extends JFrame {
 
                 // 이미지와 선택 버튼을 포함하는 패널 생성 및 추가
                 for (int i = 0; i < 3; i++) {
-                    addImageGroup(resultPanel, images[index][i], descriptions[index][i], resultFrame, i); // 수정된 부분
+                    addImageGroup(resultPanel, images[index][i], descriptions[index][i], comments[index][i], resultFrame, i); // 수정된 부분
                 }
 
                 resultFrame.add(resultPanel);
@@ -208,7 +235,7 @@ public class MainScreen extends JFrame {
         });
     }
 
-    private void addImageGroup(JPanel panel, String[] imagePaths, String[] descriptions, JFrame resultFrame, int groupIndex) {
+    private void addImageGroup(JPanel panel, String[] imagePaths, String[] descriptions, String[] comments, JFrame resultFrame, int groupIndex) {
         // 각 그룹을 포함하는 패널 생성
         JPanel groupPanel = new JPanel(new BorderLayout());
 
@@ -222,37 +249,42 @@ public class MainScreen extends JFrame {
         groupPanel.add(innerPanel, BorderLayout.CENTER);
 
         for (int i = 0; i < imagePaths.length; i++) {
-            addImageWithButton(innerPanel, imagePaths[i], descriptions[i], resultFrame);
+            addImageWithButton(innerPanel, imagePaths[i], descriptions[i], comments[i], resultFrame);
         }
         groupPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // 테두리 추가
 
         panel.add(groupPanel);
     }
 
-
-
-    private void addImageWithButton(JPanel panel, String imagePath, String description, JFrame resultFrame) {
+    private void addImageWithButton(JPanel panel, String imagePath, String description, String comment, JFrame resultFrame) {
         // 이미지와 설명을 포함하는 패널 생성
         JPanel imagePanel = new JPanel(new BorderLayout());
 
         // 이미지를 표시할 라벨 생성
         JLabel imageLabel = new JLabel();
-        ImageIcon imageIcon = new ImageIcon(imagePath);
-        imageLabel.setIcon(imageIcon);
+        ImageIcon originalIcon = new ImageIcon(imagePath);
+        Image originalImage = originalIcon.getImage();
+        
+        // 패널 크기에 맞게 이미지 조정
+        int panelWidth = 300;  // 원하는 패널 너비
+        int panelHeight = 200; // 원하는 패널 높이
+        Image scaledImage = originalImage.getScaledInstance(panelWidth, panelHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        
+        imageLabel.setIcon(scaledIcon);
 
         // 설명을 표시할 라벨 생성
         JLabel descriptionLabel = new JLabel(description);
         descriptionLabel.setHorizontalAlignment(JLabel.CENTER);
         descriptionLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        descriptionLabel.setFont(new Font("맑은고딕", Font.BOLD, 18));
+        descriptionLabel.setFont(new Font("맑은고딕", Font.BOLD, 15));
 
         // 이미지 라벨에 마우스 리스너 추가
         imageLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // 선택한 이미지 경로를 저장하고 다음 페이지로 이동
-                String selectedImagePath = imagePath;
-                new NextPage(selectedImagePath);
+                new NextPage(imagePath, comment);
                 resultFrame.dispose();
             }
         });
@@ -300,20 +332,35 @@ public class MainScreen extends JFrame {
 }
 
 class NextPage extends JFrame {
-    public NextPage(String imagePath) {
+    public NextPage(String imagePath, String comment) {
         setTitle("다음 페이지");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // 이미지와 설명을 표시할 패널 생성
-        JPanel panel = new JPanel(new BorderLayout());
+        // 패널을 생성하여 좌측에는 이미지, 우측에는 코멘트를 배치
+        JPanel panel = new JPanel(new GridLayout(1, 2));
 
         // 이미지를 표시할 라벨 생성
         JLabel imageLabel = new JLabel();
-        ImageIcon imageIcon = new ImageIcon(imagePath);
-        imageLabel.setIcon(imageIcon);
+        ImageIcon originalIcon = new ImageIcon(imagePath);
+        Image originalImage = originalIcon.getImage();
+        
+        // 패널 크기에 맞게 이미지 조정
+        int panelWidth = 640;  // 패널 너비 (창 너비의 절반)
+        int panelHeight = 830; // 패널 높이
+        Image scaledImage = originalImage.getScaledInstance(panelWidth, panelHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        
+        imageLabel.setIcon(scaledIcon);
 
-        // 패널에 이미지 라벨 추가
-        panel.add(imageLabel, BorderLayout.CENTER);
+        // 코멘트를 표시할 라벨 생성
+        JLabel commentLabel = new JLabel("<html>" + comment.replaceAll("\n", "<br>") + "</html>");
+        commentLabel.setHorizontalAlignment(JLabel.CENTER);
+        commentLabel.setFont(new Font("맑은고딕", Font.PLAIN, 20));
+        commentLabel.setVerticalAlignment(JLabel.TOP); // 코멘트를 상단에 정렬
+
+        // 패널에 이미지 라벨과 코멘트 라벨 추가
+        panel.add(imageLabel);
+        panel.add(commentLabel);
 
         add(panel);
         setSize(1280, 830);
@@ -321,3 +368,10 @@ class NextPage extends JFrame {
         setVisible(true);
     }
 }
+
+
+
+
+
+
+
