@@ -1,12 +1,15 @@
-// 5/24 이주원 (조건선택화면 - 조건배치 2행3열로 바꿈) (결과화면 - 새로운창 생성, 피그마처럼 사진3개 나타나게, 하단에 select 버튼 생성, 버튼 누르면 다음 창 넘어가게 만듬)
+// 주원 (조건선택화면 - 조건배치 2행3열로 바꿈) (결과화면 - 새로운창 생성, 피그마처럼 사진3개 나타나게, 하단에 select 버튼 생성, 버튼 누르면 다음 창 넘어가게 만듬)
+
 // 5/25 이현정 (상단바 구성 - 왼쪽 myJeju 글씨, 옆에 mypage, community 메뉴 구성 크기는 나중에 조정.., mypage, community 누르면 창 넘어감.)
 // 5/25 이주원 (결과화면 - 사진4개한묶음 x 3개 나타나게 구현) (select 버튼 없애고 사진 누르면 창 열리게 설정) (추천코스 제목 추가, 각 묶음별 제목 추가)
 // 5/25 18:40 김민경 (달력 넣음) (달력 삽입을 실행시키려면 'jdatepicker'파일을 다운받아 project lib에 추가해야 함!) (초반 import net.~ 3줄과 이름 뒤에 'CAL'이 붙어있는 변수들이 있는 줄은 모두 수정된 줄!)
 // 5/26 이주원 (남부 사진 저장,이름,설명 일부만 일단 추가) (결과화면 사진 제목 글씨 크기 줄임, 사진 안잘리고 나오게 코딩) (사진 누르면 나오는 창 - 좌측에 사진 나오게, 우측에 설명 나오게 코딩)
+// 5/26 이현정 (상단바 myjeju 글자 클릭 시 메인 화면 새로고침!) (상세 설명 페이지에서 엑스 버튼 누를 경우 코스 추천 창으로 다시 넘어오게 함.) (상단바, 결과 페이지 색 변경)
 
 package exam;
 
 import java.awt.*;
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -53,29 +56,36 @@ public class MainScreen extends JFrame {
         JPanel personPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         personPanel.add(personLabel);
         personPanel.add(personComboBox);
-
+        personPanel.setBackground(Color.WHITE);
+        
         JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         datePanel.add(dateLabel);
         datePanel.add(datePickerCAL); // 달력 삽입
+        datePanel.setBackground(Color.WHITE);
 
         JPanel vehiclePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         vehiclePanel.add(vehicleLabel);
         vehiclePanel.add(vehicleComboBox);
+        vehiclePanel.setBackground(Color.WHITE);
 
         JPanel conceptPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         conceptPanel.add(conceptLabel);
         conceptPanel.add(conceptComboBox);
-
+        conceptPanel.setBackground(Color.WHITE);
+        
         JPanel locationPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         locationPanel.add(locationLabel);
         locationPanel.add(locationComboBox);
+        locationPanel.setBackground(Color.WHITE);
 
         JPanel udoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         udoPanel.add(udoLabel);
         udoPanel.add(udoComboBox);
+        udoPanel.setBackground(Color.WHITE);
 
         // 메인 패널 생성
         JPanel mainPanel = new JPanel(new GridLayout(2, 3));
+        mainPanel.setBackground(Color.WHITE);
         mainPanel.add(personPanel);
         mainPanel.add(datePanel);
         mainPanel.add(vehiclePanel);
@@ -166,7 +176,7 @@ public class MainScreen extends JFrame {
                                 {"북부 이미지 3-1의 코멘트", "북부 이미지 3-2의 코멘트", "북부 이미지 3-3의 코멘트", "북부 이미지 3-4의 코멘트"}
                         },
                         {
-                                {"-대포항 앞 바다뷰 횟집\n-고깃배를 보유 사장님이 직접잡은 자연산회", "제주카페스르륵 코멘트", "주상절리대(중문대포해안) 코멘트", "엉덩물계곡 코멘트"},
+                                {"- 대포항 앞 바다뷰 횟집\n- 고깃배를 보유 사장님이 직접잡은 자연산회", "제주카페스르륵 코멘트", "주상절리대(중문대포해안) 코멘트", "엉덩물계곡 코멘트"},
                                 {"화고 흑돼지 신시가지점 코멘트", "카페 허니문하우스 코멘트", "중문색달해수욕장 코멘트", "약천사 코멘트"},
                                 {"강정해녀의 집 코멘트", "카페 바다다 코멘트", "중문색달해수욕장 코멘트", "주상절리대(중문대포해안) 코멘트"}
                         },
@@ -284,8 +294,9 @@ public class MainScreen extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // 선택한 이미지 경로를 저장하고 다음 페이지로 이동
-                new NextPage(imagePath, comment);
-                resultFrame.dispose();
+            	resultFrame.setVisible(false);
+                new NextPage(imagePath, comment, resultFrame);
+                // resultFrame.dispose();
             }
         });
 
@@ -300,11 +311,22 @@ public class MainScreen extends JFrame {
         JMenuBar menuBar = new JMenuBar();
 
         JLabel leftLabel = new JLabel("myJeju");
+        leftLabel.setForeground(new Color(255, 255, 255));
         leftLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
         menuBar.add(leftLabel);
 
         JMenuItem mypageItem = new JMenuItem("mypage");
         JMenuItem communityItem = new JMenuItem("community");
+        mypageItem.setBackground(new Color(247, 125, 12));
+        mypageItem.setForeground(new Color(255, 255, 255));
+        communityItem.setBackground(new Color(247, 125, 12));
+        communityItem.setForeground(new Color(255, 255, 255));
+        leftLabel.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		new MainScreen();
+        	}
+        });
         mypageItem.addActionListener(new mypageActionListner());
         communityItem.addActionListener(new communityActionListner());
 
@@ -312,6 +334,7 @@ public class MainScreen extends JFrame {
 
         menuBar.add(mypageItem);
         menuBar.add(communityItem);
+        menuBar.setBackground(new Color(247, 125, 12));
 
         setJMenuBar(menuBar);
     }
@@ -332,7 +355,7 @@ public class MainScreen extends JFrame {
 }
 
 class NextPage extends JFrame {
-    public NextPage(String imagePath, String comment) {
+    public NextPage(String imagePath, String comment, JFrame resultFrame) {
         setTitle("다음 페이지");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -366,12 +389,12 @@ class NextPage extends JFrame {
         setSize(1280, 830);
         setLocationRelativeTo(null);
         setVisible(true);
+        
+        addWindowListener(new WindowAdapter() {
+        	@Override
+        	public void windowClosed(WindowEvent e) {
+        		resultFrame.setVisible(true);
+        	}
+        });
     }
 }
-
-
-
-
-
-
-
