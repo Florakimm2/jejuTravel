@@ -2,7 +2,7 @@
 // 5/26 이현정 (상단바 수정)
 // 5/27 이주원 (여행 일정표 삽입)
 // 5/27 이주원 (오렌지색 상단바를 지워버렸음을 알게되어 다시 추가함) 
-
+// 5/27 이주원 12:59 (상단바에서 community 눌러도 안넘어가지는 문제 해결 - 상단바 이상 무)
 
 package exam;
 
@@ -56,7 +56,12 @@ public class mypage extends JFrame {
                 dispose();
             }
         });
-        communityItem.setEnabled(false); // 현재 페이지이므로 비활성화
+        communityItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new community(); // Community 페이지로 이동
+                dispose(); // 현재 페이지 닫기
+            }
+        });
 
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(myPageItem);
@@ -65,6 +70,7 @@ public class mypage extends JFrame {
 
         setJMenuBar(menuBar);
     }
+
 
     private void createScheduleTable() {
         String[] columns = {"날짜", "장소", "메모"};
